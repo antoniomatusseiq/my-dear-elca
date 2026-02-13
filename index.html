@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day ❤</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blush: #ffd6e0;
+            --lavender: #e6d9f5;
+            --mint: #d4f1e8;
+            --cream: #fff8f0;
+            --rose: #ffc2d1;
+            --sage: #b8d4c8;
+            --charcoal: #4a4a4a;
+            --gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--blush) 50%, var(--lavender) 100%);
+            background-attachment: fixed;
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        /* Floating hearts animation */
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float-up 15s infinite ease-in;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Header section */
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInDown 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            color: var(--charcoal);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--charcoal);
+            opacity: 0.8;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Love letter section */
+        .love-letter {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 80px auto;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .love-letter h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .love-letter p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--charcoal);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            text-align: right;
+            margin-top: 40px;
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        /* Photo gallery */
+        .gallery-section {
+            margin: 80px 0;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out 0.6s forwards;
+        }
+
+        .gallery-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--charcoal);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .photo-frame {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .photo-frame:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-frame::before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+        }
+
+        .photo-placeholder {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            background: linear-gradient(135deg, var(--blush), var(--lavender));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .photo-placeholder img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out 0.9s forwards;
+        }
+
+        .footer-heart {
+            font-size: 3rem;
+            color: var(--rose);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .footer-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: var(--charcoal);
+        }
+
+        /* Date invitation button */
+        .date-button {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            padding: 25px 60px;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .date-button-yes {
+            background: linear-gradient(135deg, var(--rose), var(--lavender));
+            box-shadow: 0 10px 30px rgba(255, 194, 209, 0.4);
+        }
+
+        .date-button-no {
+            background: linear-gradient(135deg, #d1d1d1, #a0a0a0);
+            box-shadow: 0 10px 30px rgba(160, 160, 160, 0.3);
+        }
+
+        .date-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .date-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .date-button:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .date-button-yes:hover {
+            box-shadow: 0 20px 50px rgba(255, 194, 209, 0.6);
+        }
+
+        .date-button-no:hover {
+            box-shadow: 0 20px 50px rgba(160, 160, 160, 0.5);
+        }
+
+        .date-button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .date-button:disabled {
+            cursor: default;
+            opacity: 0.8;
+        }
+
+        /* Modal for enlarged photos */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .love-letter {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="hearts-background" id="heartsContainer"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Happy Valentine's Day</h1>
+            <p class="subtitle">To Elca, My Dearest Love</p>
+        </header>
+
+        <!-- Love Letter Section -->
+        <section class="love-letter">
+            <h2>To My Beautiful Elca</h2>
+            <p>
+                From the moment you walked into my life, everything changed. The world became brighter, 
+                colors more vivid, and every day filled with a joy I never knew existed. You are the 
+                melody in my heart's symphony, the light that guides me through darkness, and the warmth 
+                that makes every cold day beautiful.
+            </p>
+            <p>
+                Your smile is my favorite sight in this world. The way your eyes light up when you laugh, 
+                the gentle touch of your hand in mine, the sound of your voice – these are the treasures 
+                I hold most dear. You've taught me what it means to truly love and be loved, to be 
+                vulnerable, and to find strength in our connection.
+            </p>
+            <p>
+                Every moment with you is a gift I cherish. Whether we're sharing quiet mornings together, 
+                exploring new places, or simply existing side by side, you make everything feel like home. 
+                You are my best friend, my partner, my everything.
+            </p>
+            <p>
+                On this Valentine's Day, I want you to know that my love for you grows deeper with each 
+                passing day. You are the most incredible person I've ever known, and I am endlessly 
+                grateful that I get to call you mine. Here's to all the memories we've created and all 
+                the beautiful moments yet to come.
+            </p>
+            <p>
+                I love you more than words could ever express, today and always.
+            </p>
+            <div class="signature">Forever Yours, António ❤</div>
+        </section>
+
+        <!-- Special Invitation Section -->
+        <section class="love-letter" style="animation-delay: 0.5s; background: linear-gradient(135deg, rgba(255, 214, 224, 0.9), rgba(230, 217, 245, 0.9)); border: 2px solid var(--rose);">
+            <h2>A Special Invitation</h2>
+            <p style="text-align: center; font-size: 1.3rem; margin: 40px 0;">
+                Elca, my love, I would be honored if you would join me for a special date.
+            </p>
+            <p style="text-align: center; font-size: 1.2rem; margin: 30px 0; font-style: italic;">
+                Let's create another beautiful memory together. 💕
+            </p>
+            <p style="text-align: center; font-size: 1.1rem; margin: 30px 0; opacity: 0.9;">
+                I'll plan something wonderful for us. Just say yes, and let's make it unforgettable!
+            </p>
+            <div style="text-align: center; margin-top: 50px;">
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <button class="date-button date-button-yes" onclick="handleYesResponse()">
+                        Yes! 💝
+                    </button>
+                    <button class="date-button date-button-no" onclick="handleNoResponse()">
+                        No 💔
+                    </button>
+                </div>
+                <div id="responseMessage" style="margin-top: 30px; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--charcoal); opacity: 0; transition: opacity 0.5s;"></div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section class="gallery-section">
+            <h2>Our Beautiful Moments</h2>
+            <div class="gallery">
+                <div class="photo-frame" onclick="openModal(this)">
+                    <div class="photo-placeholder">
+                        <img src="photo1.jpeg" alt="Our Beautiful Moment">
+                    </div>
+                </div>
+                <div class="photo-frame" onclick="openModal(this)">
+                    <div class="photo-placeholder">
+                        <img src="photo2.jpeg" alt="Our Beautiful Moment">
+                    </div>
+                </div>
+                <div class="photo-frame" onclick="openModal(this)">
+                    <div class="photo-placeholder">
+                        <img src="photo3.jpeg" alt="Our Beautiful Moment">
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-heart">❤</div>
+            <p class="footer-text">With all my love, Happy Valentine's Day</p>
+        </footer>
+    </div>
+
+    <!-- Modal for enlarged photos -->
+    <div class="modal" id="photoModal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 15 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.opacity = Math.random() * 0.5 + 0.2;
+            document.getElementById('heartsContainer').appendChild(heart);
+        }
+
+        // Generate hearts
+        for (let i = 0; i < 20; i++) {
+            createHeart();
+        }
+
+        // Modal functions
+        function openModal(element) {
+            const img = element.querySelector('img');
+            if (img) {
+                const modal = document.getElementById('photoModal');
+                const modalImg = document.getElementById('modalImage');
+                modal.classList.add('active');
+                modalImg.src = img.src;
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('photoModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Handle Yes response
+        function handleYesResponse() {
+            const yesButton = document.querySelector('.date-button-yes');
+            const noButton = document.querySelector('.date-button-no');
+            const message = document.getElementById('responseMessage');
+            
+            yesButton.disabled = true;
+            noButton.disabled = true;
+            
+            message.innerHTML = `
+                <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto;">
+                    <div style="font-size: 2.5rem; margin-bottom: 20px;">You're Invited! 🎉</div>
+                    <div style="font-size: 1.3rem; line-height: 2; text-align: left;">
+                        <div style="margin: 15px 0;">
+                            <span style="font-size: 1.5rem;">👫</span><br>
+                            <strong>Who:</strong> Just you and me, My Sweet Chocolate ❤️
+                        </div>
+                        <div style="margin: 15px 0;">
+                            <span style="font-size: 1.5rem;">📅</span><br>
+                            <strong>When:</strong> Sunday, March 8th, 2026
+                        </div>
+                        <div style="margin: 15px 0;">
+                            <span style="font-size: 1.5rem;">🕐</span><br>
+                            <strong>Time:</strong> I'll let you know soon! 😊
+                        </div>
+                        <div style="margin: 15px 0;">
+                            <span style="font-size: 1.5rem;">📍</span><br>
+                            <strong>Where:</strong> Somewhere special in Maputo
+                        </div>
+                    </div>
+                </div>
+            `;
+            message.style.opacity = '1';
+            message.style.color = 'var(--charcoal)';
+            
+            // Create confetti effect
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => createConfetti(), i * 30);
+            }
+        }
+
+        // Handle No response
+        function handleNoResponse() {
+            const noButton = document.querySelector('.date-button-no');
+            const message = document.getElementById('responseMessage');
+            
+            // Make the No button run away!
+            const randomX = (Math.random() - 0.5) * 200;
+            const randomY = (Math.random() - 0.5) * 200;
+            
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px) scale(0.8)`;
+            noButton.style.transition = 'transform 0.3s ease';
+            
+            setTimeout(() => {
+                noButton.style.transform = 'translate(0, 0) scale(1)';
+            }, 500);
+            
+            // Show "Think Wisely" message
+            message.innerHTML = 'Think Wisely 🤔';
+            message.style.opacity = '1';
+            message.style.color = 'var(--charcoal)';
+            message.style.fontSize = '2rem';
+            message.style.fontWeight = '500';
+            
+            setTimeout(() => {
+                message.style.opacity = '0';
+            }, 2500);
+        }
+
+        // Create confetti animation
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = ['#ffd6e0', '#e6d9f5', '#d4f1e8', '#ffc2d1'][Math.floor(Math.random() * 4)];
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.top = '-10px';
+            confetti.style.opacity = '1';
+            confetti.style.borderRadius = '50%';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '9999';
+            document.body.appendChild(confetti);
+            
+            let pos = -10;
+            let opacity = 1;
+            const fall = setInterval(() => {
+                if (pos > window.innerHeight) {
+                    clearInterval(fall);
+                    confetti.remove();
+                } else {
+                    pos += 5;
+                    opacity -= 0.01;
+                    confetti.style.top = pos + 'px';
+                    confetti.style.opacity = opacity;
+                    confetti.style.transform = `rotate(${pos}deg)`;
+                }
+            }, 20);
+        }
+    </script>
+</body>
+</html>
